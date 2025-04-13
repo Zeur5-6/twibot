@@ -24,7 +24,7 @@ client = tweepy.Client(
 )
 
 def post_video():
-    media = api.media_upload("C:\\Users\\user\\Documents\\キャルちゃんbot用かいかいかい.mp4")
+    media = api.media_upload("キャルちゃんbot用かいかいかい.mp4")
     client.create_tweet(text="", media_ids=[media.media_id])
     print("ツイート完了")
 

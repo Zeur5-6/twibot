@@ -2,6 +2,20 @@ import tweepy
 import time
 import schedule
 from datetime import datetime
+from flask import Flask
+from threading import Thread
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Bot is running!"
+
+def run_flask():
+    app.run(host='0.0.0.0', port=8080)
+
+# スレッドでFlask起動
+Thread(target=run_flask).start()
 
 consumer_key = "D5RPxaTdAj54IrtzpOe9LsqPF"
 consumer_secret = "9lKRKJ1M2gLiPS2NNWxNXKqPK6BCfaKRJUKP3A88QYzcZ1Ab30"

@@ -45,9 +45,11 @@ def post_video():
         print("動画ファイルが見つかりませんでした")
 
 # スケジュール登録
-schedule.every().day.at("04:00").do(post_video)
+schedule.every().day.at("19:00").do(post_video)
 
 print("スケジュールを開始します...")
 while True:
     schedule.run_pending()
     time.sleep(1)
+
+post_video()  # ←これをコードの下に一回だけ追加して、即時実行テスト！

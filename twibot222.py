@@ -48,8 +48,11 @@ def post_video():
 schedule.every().day.at("19:00").do(post_video)
 
 print("スケジュールを開始します...")
+
+post_video()
+
 while True:
     schedule.run_pending()
     time.sleep(1)
 
-post_video()  # ←これをコードの下に一回だけ追加して、即時実行テスト！
+

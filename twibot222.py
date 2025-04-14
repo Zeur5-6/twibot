@@ -49,7 +49,7 @@ schedule.every().day.at("19:00").do(post_video)
 
 print("スケジュールを開始します...")
 
-post_video()
+#post_video()
 
 while True:
     schedule.run_pending()

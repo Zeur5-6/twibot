@@ -1,4 +1,7 @@
 discord.py==2.3.2
 python-dotenv
-request
+requests
 flask
+tweepy
+schedule
+

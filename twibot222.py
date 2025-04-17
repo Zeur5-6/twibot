@@ -5,6 +5,15 @@ from datetime import datetime
 from flask import Flask
 from threading import Thread
 import os
+import datetime
+
+def hourly_check():
+    now = datetime.datetime.utcnow()
+    print(f"[LOG] 現在時刻(UTC): {now.strftime('%Y-%m-%d %H:%M:%S')}")
+    if now.hour == 19 and now.minute == 0:
+        print("[LOG] 19:00に一致！投稿開始します")
+        post_video()
+
 
 app = Flask(__name__)
 
@@ -45,7 +54,7 @@ def post_video():
         print("動画ファイルが見つかりませんでした")
 
 # スケジュール登録
-schedule.every().day.at("19:00").do(post_video)
+schedule.every().minute.do(hourly_check)
 
 print("スケジュールを開始します...")
 

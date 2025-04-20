@@ -46,12 +46,19 @@ client = tweepy.Client(
 )
 
 def post_video():
-    if os.path.exists("kaikaikai.mp4"):
-        media = api.media_upload("kaikaikai.mp4")
-        client.create_tweet(text="", media_ids=[media.media_id])
-        print("ツイート完了")
-    else:
-        print("動画ファイルが見つかりませんでした")
+    now = datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
+    try:
+        print(f"[LOG] [{now}] 投稿処理を開始します")
+        if os.path.exists("kaikaikai.mp4"):
+            print(f"[LOG] [{now}] 動画ファイルが存在しました。アップロードを開始します")
+            media = api.media_upload("kaikaikai.mp4")
+            print(f"[LOG] [{now}] メディアアップロード成功、ツイートを送信します")
+            client.create_tweet(text="", media_ids=[media.media_id])
+            print(f"[LOG] [{now}] ✅ ツイート完了！")
+        else:
+            print(f"[LOG] [{now}] ❌ 動画ファイルが見つかりませんでした")
+    except Exception as e:
+        print(f"[LOG] [{now}] ❌ 投稿中にエラー発生: {e}")
 
 # スケジュール登録
 schedule.every().minute.do(hourly_check)
